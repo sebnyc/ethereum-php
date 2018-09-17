@@ -80,14 +80,16 @@ class EthQ extends EthD
             // @todo This might be wrong. We need to check for RLP.
             // @see https://github.com/ethereum/wiki/wiki/RLP
 
-            if (strlen($val) >= 10 && $val[2] === 'f') {
-                $big_int = new Math_BigInteger($val, -16);
-                $big_int->is_negative = true;
-            }
-            else {
-                // defaults to unsigned int if no abi is given.
-                $big_int = new Math_BigInteger($val, 16);
-            }
+//            if (strlen($val) >= 10 && $val[2] === 'f') {
+//                $big_int = new Math_BigInteger($val, -16);
+//                $big_int->is_negative = true;
+//            }
+//            else {
+//                // defaults to unsigned int if no abi is given.
+//                $big_int = new Math_BigInteger($val, 16);
+//            }
+            // Custom decode, to be removed when fix is provided in source repository
+            $big_int = new Math_BigInteger($val, 16);
         }
         elseif (is_numeric($val)) {
             if ($val < 0) {
